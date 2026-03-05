@@ -88,15 +88,6 @@ function MonthlyHistory({ log, schedule, todayKey }) {
   const selectedDayAbbr = selectedDate ? DAYS[(selectedDate.getDay() + 6) % 7] : null;
   const selectedSched = selectedDayAbbr ? schedule[selectedDayAbbr] : null;
 
-  const getDotColor = (day) => {
-    const k = getKey(day);
-    const e = log[k];
-    if (!e) return null;
-    if (e.gym) return "#00ff88";
-    if (e.protein || e.creatine) return "#ff8c00";
-    return null;
-  };
-
   return (
     <div>
       {/* Month Nav */}
@@ -145,7 +136,6 @@ function MonthlyHistory({ log, schedule, todayKey }) {
             const isToday = k === todayKey;
             const isFuture = new Date(k + "T12:00:00") > new Date(todayKey + "T12:00:00");
             const isSelected = selectedDay === day;
-            const dotColor = getDotColor(day);
             const gymDone = e?.gym;
             const anyDone = e?.gym || e?.protein || e?.creatine;
 
